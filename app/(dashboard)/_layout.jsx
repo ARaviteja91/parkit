@@ -5,10 +5,6 @@ import { Tabs } from 'expo-router'
 const DashboardLayout = () => {
   return (
     <>
-    <StatusBar 
-      animated={true}
-      barStyle={'dark-content'}
-    />
     <Tabs 
         screenOptions={{
           headerShown:false,

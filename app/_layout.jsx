@@ -30,6 +30,12 @@ export default function RootLayout() {
                 title:'Register',                 
             }} 
         />
+        <Stack.Screen 
+            name='forgotPassword' 
+            options={{
+              title:'Frgot Password'
+            }} 
+        />
         <Stack.Screen name='(dashboard)' options={{headerShown:false}} />
     </Stack>
     </>
