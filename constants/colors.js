@@ -1,23 +1,49 @@
-export const Colors = {
-  primary: "#6849a7",
-  warning: "#cc475a",
-  
-  dark: {
-    text: "#d4d4d4",
-    title: "#fff",
-    background: "#252231",
-    navBackground: "#201e2b",
-    iconColor: "#9591a5",
-    iconColorFocused: "#fff",
-    uiBackground: "#2f2b3d",
+// constants/theme.js
+export const COLORS = {
+  primary: '#3B82F6',
+  secondary: '#64748B',
+  background: '#F8FAFC',
+  white: '#FFFFFF',
+  black: '#000000',
+  gray: '#9CA3AF',
+  error: '#EF4444',
+  link: '#2563EB',
+};
+
+export const SIZES = {
+  base: 8,
+  font: 14,
+  radius: 10,
+  padding: 16,
+};
+
+export const FONTS = {
+  regular: {
+    fontFamily: 'System',
+    fontSize: SIZES.font,
+    color: COLORS.black,
   },
+  header: {
+    fontFamily: 'System',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: COLORS.black,
+  },
+};
+
+export const SHADOWS = {
   light: {
-    text: "#625f72",
-    title: "#201e2b",
-    background: "#e0dfe8",
-    navBackground: "#e8e7ef",
-    iconColor: "#686477",
-    iconColorFocused: "#201e2b",
-    uiBackground: "#d6d5e1",
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    elevation: 2,
   },
-}
+  medium: {
+    shadowColor: COLORS.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+};

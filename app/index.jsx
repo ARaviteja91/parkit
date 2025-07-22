@@ -1,42 +1,30 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
-import Logo from '../assets/parkit_car.png'
-import { Link } from 'expo-router'
+import { useEffect, useState } from 'react';
+import { useRouter } from 'expo-router';
+import { useAuth } from '../context/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const index = () => {
-  return (
-    <View style={styles.container} >
-        <Text style={styles.title}>PARK<Image source={Logo} style={styles.logo} />IT </Text>
-        <Link style={styles.button} href={'/login'} >Login</Link>
-    </View>
-  )
+export default function Index() {
+  const { user } = useAuth();
+  const router = useRouter();
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const decideRoute = async () => {
+      if (!user) {
+        router.replace('/(auth)/login');
+      } else {
+        const hasSeenWelcome = await AsyncStorage.getItem('hasSeenWelcome');
+        if (hasSeenWelcome === 'true') {
+          router.replace('/(tabs)/home');
+        } else {
+          router.replace('/(auth)/welcome');
+        }
+      }
+      setChecking(false);
+    };
+
+    decideRoute();
+  }, [user]);
+
+  return null;
 }
-
-const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-    },
-    title:{
-        fontSize:52,
-        color:'#fa6f1d'
-    },
-    logo:{
-        width:60,
-        height:60,
-        transform:[{translateY:10}]
-    },
-    button:{
-        color:'#fff',
-        backgroundColor:'orange',
-        padding:10,
-        margin:10,
-        borderRadius:10,
-        fontSize:18,
-        width:'70%',
-        textAlign:'center'
-    }
-
-})
-export default index
