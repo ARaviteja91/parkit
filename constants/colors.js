@@ -1,6 +1,6 @@
 // constants/theme.js
 export const COLORS = {
-  primary: '#3B82F6',
+  primary: '#fa681a',
   secondary: '#64748B',
   background: '#F8FAFC',
   white: '#FFFFFF',

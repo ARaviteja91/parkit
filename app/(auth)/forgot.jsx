@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../firebase/config';
+import { Link } from 'expo-router';
 
 export default function Forgot() {
   const [email, setEmail] = useState('');
@@ -30,6 +31,7 @@ export default function Forgot() {
       {loading ? <ActivityIndicator /> : <Button title="Send Reset Link" onPress={resetPassword} />}
       {message ? <Text style={styles.success}>{message}</Text> : null}
       {error ? <Text style={styles.error}>{error}</Text> : null}
+      <Link dismissTo style={styles.back} href={'/login'} >Back to Login</Link>
     </View>
   );
 }
@@ -40,4 +42,5 @@ const styles = StyleSheet.create({
   input: { borderWidth: 1, padding: 10, marginBottom: 10, borderRadius: 5 },
   error: { color: 'red', marginVertical: 5 },
   success: { color: 'green', marginVertical: 5 },
+  back:{color:'blue',marginTop:15}
 });

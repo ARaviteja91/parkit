@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Pressable, StyleSheet, ActivityIndicator, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/config';
-import { router } from 'expo-router';
+import { Link, router } from 'expo-router';
 import { COLORS,FONTS,SIZES } from '../../constants/colors';
 
 export default function Login() {

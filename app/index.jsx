@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, Button } from 'react-native';
+import { View, Text, ActivityIndicator, Button, StyleSheet, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
+import Welcome from '../assets/splash-icon.png'
 
 const index = () => {
   const [isFirstVisit, setIsFirstVisit] = useState(null); // null = loading
+  const dev_mode = process.env.EXPO_PUBLIC_DEV_MODE
 
   useEffect(() => {
+     
     const checkFirstVisit = async () => {
       try {
         const value = await AsyncStorage.getItem('hasVisited');
@@ -18,7 +21,10 @@ const index = () => {
         } else {
           // Returning visitor
           setIsFirstVisit(false);
-          // router.replace('(auth)/login')
+          setTimeout(() => {
+            
+            router.replace('/login')
+          }, 2000);
         }
       } catch (error) {
         console.error('Error checking visit status', error);
@@ -33,13 +39,23 @@ const index = () => {
   }
 
   return (
-    <View style={{ padding: 40 }}>
-      <Text style={{ fontSize: 18 }}>
-        {isFirstVisit ? '👋 Welcome, first-time visitor!' : '👋 Welcome back!'}
-      </Text>
-      <Button title='Reset' onPress={()=>AsyncStorage.removeItem('hasVisited')} />
-    </View>
+    <>
+      <Image style={styles.welcome} source={Welcome} />
+      <View style={styles.resetBtn} >
+        <Button color={'orangered'} title='Reset' onPress={()=>AsyncStorage.removeItem('hasVisited')} />
+      </View>      
+    </>
   );
 };
 
 export default index;
+const styles = StyleSheet.create({
+  resetBtn:{
+    position:'absolute',
+    top:50,
+    color:'white',
+    width:'auto'
+  },
+  welcome:{
+  }
+})

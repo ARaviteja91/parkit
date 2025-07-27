@@ -42,7 +42,7 @@ export default function Register() {
       <TextInput placeholder="Confirm Password" secureTextEntry style={styles.input} onChangeText={setConfirmPassword} />
       {loading ? <ActivityIndicator /> : <Button title="Register" onPress={register} />}
       <Text style={styles.error}>{error}</Text>
-      <Pressable onPress={() => router.replace('/(auth)/login')}><Text style={styles.link}>Back to Login</Text></Pressable>
+      <Pressable onPress={() => router.replace('/(auth)/login')}><Text style={styles.link}>Go to Login</Text></Pressable>
     </View>
   );
 }
