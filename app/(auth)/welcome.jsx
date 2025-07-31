@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View,StyleSheet, Image, Pressable, Text, Button } from 'react-native';
 
-import WelcomeIMG from '../../assets/splash-icon.png'
 import OnBoarding from '../../components/OnBoarding';
 import { Link } from 'expo-router';
 
@@ -24,25 +23,7 @@ export default function Welcome() {
   
   return (
     <>
-      {firstScreen==true?
-        <Image source={WelcomeIMG} style={styles.wlImg} />:firstScreen==false?
-        <View style={styles.container} >
-          <Pressable style={styles.btn} onPress={bookParking}>
-            <Text style={styles.btnText} >Book Parking</Text>
-          </Pressable>
-          <Pressable disabled style={styles.btn_disabled} onPress={rentParking}>
-            <Text style={styles.btnText} >Rent Parking</Text>
-          </Pressable>
-        </View>:''
-      }
-      {
-        onboarding==true?
-        <OnBoarding/>:onboarding==false?
-        <Link href={'/register'}>
-          <Button title='Register' />
-        </Link>:''
-      }
-      
+      <OnBoarding/>      
     </>
   );
 }
