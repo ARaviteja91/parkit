@@ -15,7 +15,15 @@ export default function TabsLayout() {
   return (
     <>
     <StatusBar/>
-    <Tabs screenOptions={{headerShown:false,tabBarStyle:{height:60}}} >
+    <Tabs 
+      screenOptions={{
+        headerShown:false,
+        tabBarStyle:{height:60},
+        tabBarActiveTintColor:'#fa681a'
+      }}
+      
+    
+    >
       <Tabs.Screen name="home" 
         options={{ 
           title: 'Home',
