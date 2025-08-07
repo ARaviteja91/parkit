@@ -5,34 +5,40 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../../firebase/config';
 
 const profile = () => {
-  const logout = async () => {
-        Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
+
+  const confirmLogout = () => {
+    Alert.alert(
+      'Confirm Logout',
+      'Are you sure you want to log out?',
       [
-        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
         {
           text: 'Logout',
           style: 'destructive',
-          onPress: async () => {
-            try {
-              await signOut(auth);
-              router.replace('/(auth)/login');
-            } catch (error) {
-              Alert.alert('Error', 'Logout failed.');
-            }
-          },
+          onPress: logout,
         },
       ],
       { cancelable: true }
     );
   };
 
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      console.log('User signed out');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   return (
     <>
     <ScrollView  >
       <ProfileInfo/>
-      <Pressable style={styles.logout}  onPress={logout} >
+      <Pressable style={styles.logout}  onPress={confirmLogout} >
         <Text>Logout</Text>
       </Pressable>
     </ScrollView>
